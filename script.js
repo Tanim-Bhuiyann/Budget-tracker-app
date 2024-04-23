@@ -1,3 +1,8 @@
+// I deserve Dom Biriyani
+// I deserve Dom Biriyani
+// I deserve Dom Biriyani
+// I deserve Dom Biriyani
+
 const form = document.querySelector("form");
 form.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -56,22 +61,27 @@ function render() {
 
 function deleteData(id) {
   delete entryList[+id];
-  
+
   entryList = entryList.filter(Number);
   render();
   saveData();
 }
 
-function editData(id){
+function editData(id) {
   const newValue = document.getElementById(id).value;
   console.log(newValue);
-  if(newValue!=0){
+  if (newValue != 0) {
     entryList[id] = +newValue;
   }
-  
+
   saveData();
   render();
-
+  //extra effort
+  //extra effort
+  // I deserve Dom Biriyani
+  // I deserve Dom Biriyani
+  // I deserve Dom Biriyani
+  // I deserve Dom Biriyani
 }
 function saveData() {
   localStorage.setItem("data", JSON.stringify(entryList));
