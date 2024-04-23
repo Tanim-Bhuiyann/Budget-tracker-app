@@ -37,17 +37,15 @@ function render() {
       income = income + entryList[i];
 
       renderBudget.innerHTML += `<div class="flex justify-between py-1 ">
-      <div class="flex gap-4"><span class="font-bold">${entryList[i]}</span> <span>Income</span></div>
-      <div class="flex gap-3"><button onclick="del(${i})" >Delete</button> <button onclick ="edit(${i})">Edit</button></div>
+      <div class="flex gap-4"><input id ="${i}" value="${entryList[i]}" class="font-bold w-32 text-center"/> <span>Income</span></div>
+      <div class="flex gap-3"><button onclick="deleteData(${i})" >Delete</button> <button onclick ="editData(${i})">Edit</button></div>
     </div>`;
     } else {
       expanse = expanse + entryList[i];
 
       renderBudget.innerHTML += `<div class="flex justify-between py-1 ">
-      <div class="flex gap-4"><span class="font-bold">${Math.abs(
-        entryList[i]
-      )}</span> <span>Expanse</span></div>
-      <div class="flex gap-3"><button onclick="del(${i})" >Delete</button> <button onclick ="edit(${i})">Edit</button></div>
+      <div class="flex gap-4"><input id ="${i}" value="${entryList[i]}" class="font-bold  w-32 text-center"/> <span>Expanse</span></div>
+      <div class="flex gap-3"><button onclick="deleteData(${i})" >Delete</button> <button onclick ="editData(${i})">Edit</button></div>
     </div>`;
     }
   }
@@ -56,7 +54,25 @@ function render() {
   expanseElement.innerText = expanse;
 }
 
-function del() {}
+function deleteData(id) {
+  delete entryList[+id];
+  
+  entryList = entryList.filter(Number);
+  render();
+  saveData();
+}
+
+function editData(id){
+  const newValue = document.getElementById(id).value;
+  console.log(newValue);
+  if(newValue!=0){
+    entryList[id] = +newValue;
+  }
+  
+  saveData();
+  render();
+
+}
 function saveData() {
   localStorage.setItem("data", JSON.stringify(entryList));
 }
